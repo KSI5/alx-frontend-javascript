@@ -1,19 +1,16 @@
-// 7-airport.js
 export default class Airport {
   constructor(name, code) {
-    this._name = this.validateString(name, 'Name');
-    this._code = this.validateString(code, 'Code');
-  }
-
-  toString() {
-    return `[object ${this._code}]`;
-  }
-
-  validateString(value, fieldName) {
-    if (typeof value === 'string') {
-      return value;
-    } else {
-      throw new TypeError(`${fieldName} must be a string`);
+    if (typeof name !== 'string') {
+      throw new TypeError('Name must be a string');
     }
+    if (typeof code !== 'string') {
+      throw new TypeError('Code must be a string');
+    }
+    this._name = name;
+    this._code = code;
+  }
+
+  get [Symbol.toStringTag]() {
+    return this._code;
   }
 }
